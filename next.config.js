@@ -1,0 +1,18 @@
+module.exports = {
+    env: {
+        STRIPE_API_KEY: process.env.STRIPE_API_KEY,
+        NEXT_PUBLIC_STRIPE_PUBLIC_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
+        STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+        STRIPE_SUCCESS_URL: process.env.STRIPE_SUCCESS_URL,
+        STRIPE_CANCEL_URL: process.env.STRIPE_CANCEL_URL,
+
+        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+        GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+
+        FAUNADB_KEY: process.env.FAUNADB_KEY,
+
+        PRISMIC_ENDPOINT: process.env.PRISMIC_ENDPOINT,
+        PRISMIC_ACCESS_TOKEN: process.env.PRISMIC_ACCESS_TOKEN,
+    },
+
+}

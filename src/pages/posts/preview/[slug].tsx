@@ -11,77 +11,88 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 
 interface PostPreviewProps {
-    post: {
-        slug: string;
-        title: string;
-        content: string;
-        updatedAt: string;
-    }
+  post: {
+    slug: string;
+    title: string;
+    content: string;
+    updatedAt: string;
+  }
 }
 
 export default function PostPreview({ post }: PostPreviewProps) {
-    const [session]: any = useSession()
-    const router = useRouter()
+  const [session]: any = useSession()
+  const router = useRouter()
 
-    useEffect(() => {
-        if (session?.activeSubscription) {
-            router.push(`/posts/${post.slug}`)
-        }
-    }, [session])
-    
-    return (
-        <>
-        <Head>
-            <title>{post.title} | Ignews </title>
-        </Head>
+  useEffect(() => {
+    if (session?.activeSubscription) {
+      router.push(`/posts/${post?.slug}`)
+    }
+  }, [session])
 
-        <main className={styles.container}>
-            <article className={styles.post}>
-                <h1>{post.title}</h1>
-                <time>{formatPostData(post.updatedAt)}</time>
-                <div 
-                className={`${styles.postContent} ${styles.previewContent}`}
-                dangerouslySetInnerHTML= {{ __html: post.content}} 
-                />
+  return (
+    <>
+      <Head>
+        <title>{post?.title} | Ignews </title>
+      </Head>
 
-                <div className={styles.continueReading}>
-                    Wanna continue reading?
+      <main className={styles.container}>
+        <article className={styles.post}>
+          <h1>{post?.title}</h1>
+          <time>{formatPostData(post?.updatedAt)}</time>
+          <div
+            className={`${styles.postContent} ${styles.previewContent}`}
+            dangerouslySetInnerHTML={{ __html: post?.content }}
+          />
+
+          <div className={styles.continueReading}>
+            Wanna continue reading?
                     <Link href="/">
-                        <a href="">Subscribe now 🤗</a>
-                    </Link>
-                </div>
-            </article>
-        </main>
-        </>
-    )
+              <a href="">Subscribe now 🤗</a>
+            </Link>
+          </div>
+        </article>
+      </main>
+    </>
+  )
 }
 
-export const getStaticPaths = () => {
-    return {
-        paths: [],
-        fallback: 'blocking'
-    }
+export const getStaticPaths = async() => {
+  return {
+    paths: [
+      {
+        params:
+          { slug: 'where-does-it-come-from' }
+      },
+      {
+        params:
+          { slug: 'what-is-lorem-ipsum' }
+      }
+    ],
+    fallback: false
+  }
 }
 
-export const getStaticProps: GetStaticProps = async({ params }) => {
-    
-    const { slug } = params;
+export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-    const prismic = getPrismicClient()
+  const { slug } = params;
 
-    const response = await prismic.getByUID('publication', String(slug), {})
+  const prismic = getPrismicClient()
 
-    const post = {
-        slug,
-        title: RichText.asText(response.data.title),
-        content: RichText.asHtml(response.data.content.splice(0, 1)),
-        updatedAt: response.last_publication_date
-    };
+  const response = await prismic.getByUID('publication', String(slug), {})
 
-    return {
-        props: {
-            post,
-        },
-        redirect: 60 * 30, // 30 minutes
+  console.log('post', slug)
+
+  const post = {
+    slug: slug,
+    title: RichText.asText(response.data.title),
+    content: RichText.asHtml(response.data.content.splice(0, 1)),
+    updatedAt: response.last_publication_date
+  };
+
+
+  return {
+    props: {
+      post,
     }
+  }
 }
