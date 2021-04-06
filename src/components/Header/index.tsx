@@ -1,4 +1,4 @@
-import { ActiveLink } from '../ActiveLink/Index';
+import { ActiveLink } from '../ActiveLink/index';
 
 import { SignInButton } from '../SignInButton';
 
