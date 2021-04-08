@@ -30,6 +30,16 @@
     }
 }
 
+@media (max-width: 720px) {
+    body {
+        display: flex
+    }
+    
+    html {
+    font-size: 87.5%;
+    }
+}
+
 body {
     background: var(--gray-900);
     color: var(--white);

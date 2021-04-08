@@ -28,6 +28,7 @@ const relevantEvents = new Set([
 ])
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+    
     if (req.method === 'POST') {
         const buf = await buffer(req);
         const secret = req.headers['stripe-signature']
