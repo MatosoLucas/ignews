@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden;
+    margin-bottom: 7rem;
 }
 
 .hero {
@@ -56,9 +56,14 @@
             justify-content: center;
             align-items: center;
         }
+
+        button {
+            width: 100%
+        }
     }
     .img {
         margin-top: 1rem;
+        margin-bottom: 2rem;
         height: auto;
         width: 260px;
     }
