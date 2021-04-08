@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 .hero {
@@ -44,9 +45,21 @@
     }
 }
 
-@media (max-width: 768px) {
-
-.img {
-    display: none;
-}
+@media (max-width: 720px) {
+    .contentContainer {
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+    .hero {
+            > span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .img {
+        margin-top: 1rem;
+        height: auto;
+        width: 260px;
+    }
 }

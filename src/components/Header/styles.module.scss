@@ -57,19 +57,16 @@
         margin-left: auto;
     }
 }
-@media (max-width: 480px) {
+@media (max-width: 490px) {
     .headerContent {
        nav {
-
         margin-left: 0.5rem;
+        
         a {
         & + a {
             margin-left: 0rem;
+            }
         }
-        }
-       } 
-       button {
-        margin-left: 2rem;
-    }
+       }
     }
 }
