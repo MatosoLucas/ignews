@@ -30,4 +30,19 @@
     &:hover {
         filter: brightness(0.8);
     }
+        .mobile {
+            display: none;
+        }
+        .desktop {
+            display: block;
+        } 
+
+    @media (max-width: 720px) {
+        .mobile {
+            display: block;
+        }
+        .desktop {
+            display: none;
+        } 
+    }
 }
